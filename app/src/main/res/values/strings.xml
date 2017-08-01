@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Test</string>
+
+    <!-- UserName field in the HomeActivity -->
+    <string name="user_name">UserName</string>
+
+    <!-- Password field in the HomeActivity -->
+    <string name="password">Password</string>
+
+    <!-- Login button tag in HomeActivity -->
+    <string name="login_button">login</string>
+</resources>
