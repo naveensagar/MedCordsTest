@@ -4,17 +4,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.medcords.test.test.R;
 import com.medcords.test.test.api.ApiClient;
 import com.medcords.test.test.api.ApiInterface;
 import com.medcords.test.test.model.LoginResponse;
 import com.medcords.test.test.model.PasswordInput;
-import com.medcords.test.test.R;
 import com.medcords.test.test.model.TokenInput;
 
 import retrofit2.Call;
@@ -73,13 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         // When the login button is clicked call the api
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 callApi();
-
-             /*   // Create a new intent to open {@link HomeActivity}
-                Intent activityChangeIntent = new Intent(LoginActivity.this, HomeActivity.class);
-                //Start the new activity
-                startActivity(activityChangeIntent);*/
             }
         });
     }
@@ -122,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
+    // Called to log in user
     private void callApi() {
         // Get the userName
         String userName = userNameField.getText().toString().trim();
@@ -130,6 +123,10 @@ public class LoginActivity extends AppCompatActivity {
         // Get the password
         String password = passwordField.getText().toString().trim();
 
+        if (userName.equals("") || password.equals("")) {
+            Toast.makeText(LoginActivity.this, getString(R.string.null_field), Toast.LENGTH_SHORT).show();
+            return;
+        }
         // Make a PasswordInput type object to pass to the api call
         PasswordInput passwordInput = new PasswordInput();
         passwordInput.setUserName(userName);
@@ -144,7 +141,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse loginResponse = response.body();
 
-                Log.v("LoginActivity", Integer.toString(response.code()));
+                //Log.v("LoginActivity", Integer.toString(response.code()));
+
                 if (loginResponse != null) {
                     token = loginResponse.getToken();
 

@@ -19,5 +19,6 @@
     <!-- Toast message for try again-->
     <string name="failed">Something went wrong, Please Try again</string>
 
-
+    <!--Toast message for null password or userName field-->
+    <string name="null_field">Password or userName cannot be empty</string>
 </resources>

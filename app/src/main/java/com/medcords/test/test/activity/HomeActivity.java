@@ -24,8 +24,6 @@ public class HomeActivity extends AppCompatActivity {
 
     TextView welcomeTextView;
 
-    // SharedPreference object
-    SharedPreferences sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +38,8 @@ public class HomeActivity extends AppCompatActivity {
         welcomeText(token);
 
     }
+
+    // To access the lastLoginDetails
     private void welcomeText(String token) {
 
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
