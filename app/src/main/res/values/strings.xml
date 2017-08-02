@@ -8,5 +8,12 @@
     <string name="password">Password</string>
 
     <!-- Login button tag in HomeActivity -->
-    <string name="login_button">login</string>
+    <string name="login_button_text">login</string>
+
+    <!-- Shared preference file name-->
+    <string name="saved_token">token_saved</string>
+
+    <!-- token key name-->
+    <string name="token">token</string>
+
 </resources>
