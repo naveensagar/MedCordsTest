@@ -1,4 +1,4 @@
-package com.medcords.test.test;
+package com.medcords.test.test.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "http://www.medcords.com/testapp.example.com/";
+    public static final String BASE_URL = "http://www.example.com/";
 
     public static Retrofit retrofit = null;
 

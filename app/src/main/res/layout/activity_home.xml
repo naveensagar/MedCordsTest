@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.medcords.test.test.HomeActivity">
+    tools:context="com.medcords.test.test.activity.HomeActivity">
 
     <TextView
         android:id="@+id/welcome_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textSize="@dimen/font_normal"
          />
 </LinearLayout>

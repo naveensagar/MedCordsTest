@@ -1,4 +1,4 @@
-package com.medcords.test.test;
+package com.medcords.test.test.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.medcords.test.test.api.ApiClient;
+import com.medcords.test.test.api.ApiInterface;
+import com.medcords.test.test.model.LoginResponse;
+import com.medcords.test.test.model.PasswordInput;
+import com.medcords.test.test.R;
+import com.medcords.test.test.model.TokenInput;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -92,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse loginResponse = response.body();
                 // If the token matches previos token then Start the HomeActivity
-                if (loginResponse.getToken() == oldToken) {
+                if (loginResponse != null && loginResponse.getToken() == oldToken) {
 
                     // Create a new intent to open {@link HomeActivity}
                     Intent activityChangeIntent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -109,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -138,23 +145,28 @@ public class LoginActivity extends AppCompatActivity {
                 LoginResponse loginResponse = response.body();
 
                 Log.v("LoginActivity", Integer.toString(response.code()));
-                token = loginResponse.getToken();
+                if (loginResponse != null) {
+                    token = loginResponse.getToken();
 
-                // Save the token into shared preference
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString(getString(R.string.token), token);
-                editor.commit();
+                    // Save the token into shared preference
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString(getString(R.string.token), token);
+                    editor.commit();
 
-                // Create a new intent to open {@link HomeActivity}
-                Intent activityChangeIntent = new Intent(LoginActivity.this, HomeActivity.class);
-                //Start the new activity
-                startActivity(activityChangeIntent);
+                    // Create a new intent to open {@link HomeActivity}
+                    Intent activityChangeIntent = new Intent(LoginActivity.this, HomeActivity.class);
+                    //Start the new activity
+                    startActivity(activityChangeIntent);
+                } else {
+                    Toast.makeText(LoginActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                }
+
 
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -1,4 +1,4 @@
-package com.medcords.test.test;
+package com.medcords.test.test.model;
 
 import com.google.gson.annotations.SerializedName;
 

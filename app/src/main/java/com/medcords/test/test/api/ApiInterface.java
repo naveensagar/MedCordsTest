@@ -1,7 +1,13 @@
-package com.medcords.test.test;
+package com.medcords.test.test.api;
+
+import com.medcords.test.test.model.LastLoginResponse;
+import com.medcords.test.test.model.LoginResponse;
+import com.medcords.test.test.model.PasswordInput;
+import com.medcords.test.test.model.TokenInput;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 /**
@@ -18,6 +24,6 @@ public interface ApiInterface {
     Call<LoginResponse> getResponseWithPassWord(@Body PasswordInput passwordInput);
 
     @POST("get_last_login_details")
-    Call<LastLoginResponse> getLastLoginDetails();
+    Call<LastLoginResponse> getLastLoginDetails(@Header("Authorization") String accessToken);
 
 }

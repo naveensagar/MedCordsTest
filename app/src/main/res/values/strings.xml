@@ -16,4 +16,8 @@
     <!-- token key name-->
     <string name="token">token</string>
 
+    <!-- Toast message for try again-->
+    <string name="failed">Something went wrong, Please Try again</string>
+
+
 </resources>
